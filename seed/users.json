@@ -1,0 +1,20 @@
+[
+  {
+    "name": "admin",
+    "password": "$2b$07$scmmL6LxFREf2zXo8EEEVuXxgJEtY0pPFbaBljxbCtuKJ6zU7tyqm",
+    "email": "admin@paypay.com",
+    "is_admin": true
+  },
+  {
+    "name": "user1",
+    "password": "$2b$07$WtHGX4CCrhUfcIysYju4LOyVSAq/aXsdbpCw/N0NHagyKt1EmRNj.",
+    "email": "user1@paypay.com",
+    "is_admin": false
+  },
+  {
+    "name": "user2",
+    "password": "$2b$07$scmmL6LxFREf2zXo8EEEVuXxgJEtY0pPFbaBljxbCtuKJ6zU7tyqm",
+    "email": "user2@paypay.com",
+    "is_admin": false
+  }
+]

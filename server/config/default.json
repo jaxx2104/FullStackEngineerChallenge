@@ -1,0 +1,6 @@
+{
+  "app_database": "test_db",
+  "app_salt": 5,
+  "app_jwttoken": "paypay",
+  "app_authentication": true
+}

@@ -11,8 +11,16 @@ services:
 
   mongo-seed:
     image: mongo:4.2.3
+    command:
+      - /bin/bash
+      - -c
+      - |
+        mongoimport --host mongo:27017 --db test_db --collection users --drop
+        mongoimport --host mongo:27017 --db test_db --collection users --type json --file /seed/users.json --jsonArray
+        mongoimport --host mongo:27017 --db test_db --collection reviews --drop
+        mongoimport --host mongo:27017 --db test_db --collection reviews --type json --file /seed/reviews.json --jsonArray
     volumes:
-      - ./server/seed:/seed
+      - ./seed:/seed
     depends_on:
       - mongo
 
