@@ -1,13 +1,8 @@
 import { request } from "./api"
 
 export const getReviews = async () => {
-  try {
-    const results = await request.get("/reviews")
-    return results.data.result
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  const results = await request.get("/reviews")
+  return results.data.result
 }
 
 export const createReviews = async ({
@@ -18,23 +13,13 @@ export const createReviews = async ({
   review
 }) => {
   const params = { _id, name, reviewer_id, reviewee_id, review }
-  try {
-    const results = await request.post("/reviews", params)
-    return results.data.result
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  const results = await request.post("/reviews", params)
+  return results.data.result
 }
 
 export const deleteReviews = async ({ _id }) => {
-  try {
-    const results = await request.delete("/reviews", { data: { _id } })
-    return results.data.result
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  const results = await request.delete("/reviews", { data: { _id } })
+  return results.data.result
 }
 
 export const updateReviews = async ({
@@ -45,11 +30,6 @@ export const updateReviews = async ({
   review
 }) => {
   const params = { _id, name, reviewer_id, reviewee_id, review }
-  try {
-    const results = await request.put("/reviews", params)
-    return results.data.result
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  const results = await request.put("/reviews", params)
+  return results.data.result
 }

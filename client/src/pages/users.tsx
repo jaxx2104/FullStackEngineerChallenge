@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import jwt from "jwt-decode"
+import sweetalert from "sweetalert"
 
 import { User, LoggingInUser, defaultUser } from "../types/user"
 import {
@@ -63,7 +64,6 @@ class Users extends Component<{}, State> {
     if (!this.state.loggedInUser.is_admin) {
       location.href = "/"
     }
-
     try {
       const users = await getUsers()
       const [selectedUser] = users
@@ -72,16 +72,17 @@ class Users extends Component<{}, State> {
         selectedUser: JSON.parse(JSON.stringify(selectedUser))
       })
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Faild to load", "error")
     }
   }
 
   async handleLogin(e) {
     e.preventDefault()
     const { email, password } = this.state.loggingInUser
-    const user = await postAuthenticate({ email, password })
-    if (!user) {
-      alert("Please provide valid email and password")
+    try {
+      await postAuthenticate({ email, password })
+    } catch (error) {
+      sweetalert("Oops😱", "Faild to login", "error")
       return
     }
     this.load()
@@ -114,8 +115,10 @@ class Users extends Component<{}, State> {
       const selectedUser = this.state.selectedUser
       const users = await createUsers(selectedUser)
       this.setState({ users, selectedUser: null })
+      sweetalert("Good job!", "Success to create user", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to create user", "error")
+      return
     }
   }
 
@@ -124,8 +127,10 @@ class Users extends Component<{}, State> {
       const selectedUser = this.state.selectedUser
       const users = await deleteUsers(selectedUser)
       this.setState({ users, selectedUser: null })
+      sweetalert("Good job!", "Success to delete user", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to delete user", "error")
+      return
     }
   }
 
@@ -134,8 +139,10 @@ class Users extends Component<{}, State> {
       const selectedUser = this.state.selectedUser
       const users = await updateUsers(selectedUser)
       this.setState({ users, selectedUser: null })
+      sweetalert("Good job!", "Success to update user", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to update user", "error")
+      return
     }
   }
 

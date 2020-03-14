@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import jwt from "jwt-decode"
+import sweetalert from "sweetalert"
 
 import { Review, defaultReview } from "../types/review"
 import { User, LoggingInUser } from "../types/user"
@@ -56,7 +57,7 @@ class Reviews extends Component<{}, State> {
       const { loggedInUser }: { loggedInUser: User } = jwt(token)
       this.setState({ loggedInUser, isAuth: !!loggedInUser })
     } catch (error) {
-      console.error(error)
+      this.setState({ loggedInUser: null, isAuth: false })
     }
   }
 
@@ -72,16 +73,18 @@ class Reviews extends Component<{}, State> {
         selectedReview: JSON.parse(JSON.stringify(selectedReview))
       })
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Faild to load", "error")
+      return
     }
   }
 
   async handleLogin(e) {
     e.preventDefault()
     const { email, password } = this.state.loggingInUser
-    const user = await postAuthenticate({ email, password })
-    if (!user) {
-      alert("Please provide valid email and password")
+    try {
+      await postAuthenticate({ email, password })
+    } catch (error) {
+      sweetalert("Oops😱", "Faild to login", "error")
       return
     }
     this.load()
@@ -114,8 +117,10 @@ class Reviews extends Component<{}, State> {
       const selectedReview = this.state.selectedReview
       const reviews = await createReviews(selectedReview)
       this.setState({ reviews, selectedReview: null })
+      sweetalert("Good job!", "Success to create review", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to create review", "error")
+      return
     }
   }
 
@@ -124,8 +129,10 @@ class Reviews extends Component<{}, State> {
       const selectedReview = this.state.selectedReview
       const reviews = await deleteReviews(selectedReview)
       this.setState({ reviews, selectedReview: null })
+      sweetalert("Good job!", "Success to delete review", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to delete review", "error")
+      return
     }
   }
 
@@ -134,8 +141,10 @@ class Reviews extends Component<{}, State> {
       const selectedReview = this.state.selectedReview
       const reviews = await updateReviews(selectedReview)
       this.setState({ reviews, selectedReview: null })
+      sweetalert("Good job!", "Success to update review", "success")
     } catch (e) {
-      console.error(e)
+      sweetalert("Oops😱", "Failed to update review", "error")
+      return
     }
   }
 
