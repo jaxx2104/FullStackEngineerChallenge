@@ -12,3 +12,16 @@ export type Review = {
   reviewee_id: string
   review: ReviewChild
 }
+
+export const defaultReview = {
+  _id: "",
+  name: "",
+  reviewer_id: "",
+  reviewee_id: "",
+  review: {
+    performance: "",
+    quality: "",
+    job_knowledge: "",
+    problem_solving: ""
+  }
+}

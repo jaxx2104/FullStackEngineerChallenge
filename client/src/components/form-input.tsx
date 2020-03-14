@@ -31,9 +31,10 @@ const FormInput = (props: Props) => {
   const { type, capture, name, placeholder, value } = props
   return (
     <InputWrap>
-      <Label>{name}</Label>
+      <Label htmlFor={name}>{name}</Label>
       <StyledInput
         type={type}
+        id={name}
         name={name}
         placeholder={placeholder}
         onChange={e => capture(e, name)}

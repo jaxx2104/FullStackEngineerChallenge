@@ -37,9 +37,10 @@ const FormTextarea = (props: Props) => {
   return (
     <TextareaWrap>
       <div>
-        <Label>{name}</Label>
+        <Label htmlFor={name}>{name}</Label>
       </div>
       <StyledTextarea
+        id={name}
         name={name}
         placeholder={placeholder}
         onChange={capture}

@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev src",
     "build": "next build src && next export src -o out",
-    "start": "next start"
+    "coverage": "jest --coverage",
+    "dev": "next dev src",
+    "start": "next start",
+    "test": "jest --ci"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -17,10 +19,15 @@
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.0",
+    "@testing-library/react": "^10.0.1",
     "@types/jwt-decode": "^2.2.1",
     "@types/react": "^16.9.23",
     "@types/styled-components": "^5.0.1",
+    "babel-jest": "^25.1.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "jest": "^25.1.0",
+    "react-test-renderer": "^16.12.0",
     "typescript": "^3.8.3"
   }
 }

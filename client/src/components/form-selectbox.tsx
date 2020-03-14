@@ -33,8 +33,13 @@ const FormSelectbox = (props: Props) => {
   const { capture, isDisabled, name, items, value } = props
   return (
     <SelectWrap>
-      <Label>{name}</Label>
-      <StyledSelect value={value} disabled={isDisabled} onChange={capture}>
+      <Label htmlFor={name}>{name}</Label>
+      <StyledSelect
+        id={name}
+        value={value}
+        disabled={isDisabled}
+        onChange={capture}
+      >
         <option value="" />
         {items.map((item, i) => {
           return (

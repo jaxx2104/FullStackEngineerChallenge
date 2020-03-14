@@ -4,9 +4,9 @@ import { createGlobalStyle } from "styled-components"
 import { style } from "../constants"
 import { User } from "../types/user"
 
-import Container from "./container"
-import Navigation from "./navigation"
-import NotAuthenticated from "./unauthenticated"
+import Container from "../components/container"
+import Navigation from "../components/navigation"
+import NotAuthenticated from "../components/unauthenticated"
 
 const GlobalStyle = createGlobalStyle`
   html {

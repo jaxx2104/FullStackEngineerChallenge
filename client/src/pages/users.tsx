@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import jwt from "jwt-decode"
 
-import { User, LoggingInUser } from "../types/user"
+import { User, LoggingInUser, defaultUser } from "../types/user"
 import {
   getUsers,
   createUsers,
@@ -9,7 +9,7 @@ import {
   deleteUsers,
   postAuthenticate
 } from "../api/userActions"
-import Layout from "../components/layout"
+import Layout from "../containers/layout"
 import UsersDetail from "../containers/users-detail"
 import Menu from "../components/menu"
 
@@ -53,7 +53,7 @@ class Users extends Component<{}, State> {
       const { loggedInUser }: { loggedInUser: User } = jwt(token)
       this.setState({ loggedInUser, isAuth: !!loggedInUser })
     } catch (error) {
-      console.error(error)
+      this.setState({ loggedInUser: null, isAuth: false })
     }
   }
 
@@ -105,13 +105,7 @@ class Users extends Component<{}, State> {
   handleClickAdd() {
     this.setState({
       isUpdate: false,
-      selectedUser: {
-        _id: "",
-        name: "",
-        email: "",
-        password: "",
-        is_admin: false
-      }
+      selectedUser: defaultUser
     })
   }
 

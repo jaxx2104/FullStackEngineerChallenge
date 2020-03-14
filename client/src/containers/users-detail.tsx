@@ -65,7 +65,7 @@ const UsersDetail = (props: Props) => {
           value={selectedUser.email}
         />
         <FormCheckbox
-          label="Admin"
+          name="Admin"
           isChecked={selectedUser.is_admin}
           key={selectedUser._id}
         />

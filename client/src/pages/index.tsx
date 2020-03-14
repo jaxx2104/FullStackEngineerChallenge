@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import jwt from "jwt-decode"
 
-import { Review } from "../types/review"
+import { Review, defaultReview } from "../types/review"
 import { User, LoggingInUser } from "../types/user"
 import {
   getReviews,
@@ -10,7 +10,7 @@ import {
   deleteReviews
 } from "../api/reviewActions"
 import { getUsers, postAuthenticate } from "../api/userActions"
-import Layout from "../components/layout"
+import Layout from "../containers/layout"
 import Menu from "../components/menu"
 import ReviewsDetail from "../containers/reviews-detail"
 
@@ -105,18 +105,7 @@ class Reviews extends Component<{}, State> {
   handleClickAdd() {
     this.setState({
       isUpdate: false,
-      selectedReview: {
-        _id: "",
-        name: "",
-        reviewer_id: "",
-        reviewee_id: "",
-        review: {
-          performance: "",
-          quality: "",
-          job_knowledge: "",
-          problem_solving: ""
-        }
-      }
+      selectedReview: defaultReview
     })
   }
 

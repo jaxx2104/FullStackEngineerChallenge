@@ -15,15 +15,15 @@ const CheckboxWrap = styled.div`
 
 interface Props {
   isChecked: boolean
-  label: string
+  name: string
 }
 
 const FormCheckbox = (props: Props) => {
-  const { isChecked, label } = props
+  const { isChecked, name } = props
   return (
     <CheckboxWrap>
-      <Label>{label}</Label>
-      <input type="checkbox" defaultChecked={isChecked} />
+      <Label htmlFor={name}>{name}</Label>
+      <input type="checkbox" id={name} defaultChecked={isChecked} />
     </CheckboxWrap>
   )
 }
