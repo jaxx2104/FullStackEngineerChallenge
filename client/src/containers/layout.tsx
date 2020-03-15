@@ -1,4 +1,5 @@
 import React from "react"
+import Head from "next/head"
 import { createGlobalStyle } from "styled-components"
 
 import { style } from "../constants"
@@ -47,6 +48,9 @@ const Layout = (props: Props) => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>PayPay</title>
+      </Head>
       <GlobalStyle />
       <Navigation
         handleLoggingInUser={handleLoggingInUser}

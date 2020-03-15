@@ -35,6 +35,7 @@ const FormSelectbox = (props: Props) => {
     <SelectWrap>
       <Label htmlFor={name}>{name}</Label>
       <StyledSelect
+        name={name}
         id={name}
         value={value}
         disabled={isDisabled}
