@@ -27,10 +27,11 @@ interface Props {
     item: User | Review
   ) => void
   items: (User | Review)[]
+  loggedInUser: User
 }
 
 const Menu = (props: Props) => {
-  const { handleClickMenu, handleClickAdd, items } = props
+  const { handleClickMenu, handleClickAdd, items, loggedInUser } = props
   return (
     <MenuWrap>
       {items.map((item, i) => (
@@ -38,7 +39,9 @@ const Menu = (props: Props) => {
           {item.name}
         </MenuItem>
       ))}
-      <MenuItem onClick={handleClickAdd}>➕</MenuItem>
+      {loggedInUser.is_admin && (
+        <MenuItem onClick={handleClickAdd}>➕</MenuItem>
+      )}
     </MenuWrap>
   )
 }

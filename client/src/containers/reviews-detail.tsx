@@ -108,11 +108,15 @@ const ReviewsDetail = (props: Props) => {
         <div>
           {isUpdate ? (
             <React.Fragment>
-              <Button onClick={handleDeleteReview}>Delete</Button>
+              {loggedInUser.is_admin && (
+                <Button onClick={handleDeleteReview}>Delete</Button>
+              )}
               <Button onClick={handleUpdateReview}>Update</Button>
             </React.Fragment>
           ) : (
-            <Button onClick={handleCreateReview}>Create</Button>
+            loggedInUser.is_admin && (
+              <Button onClick={handleCreateReview}>Create</Button>
+            )
           )}
         </div>
       </ContentWrap>

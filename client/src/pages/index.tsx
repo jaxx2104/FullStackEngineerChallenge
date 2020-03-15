@@ -65,13 +65,17 @@ class Reviews extends Component<{}, State> {
     await this.getAuth()
     if (!this.state.isAuth) return
     try {
-      const [reviews, users] = await Promise.all([getReviews(), getUsers()])
-      const [selectedReview] = reviews
-      this.setState({
-        reviews,
-        users,
-        selectedReview: JSON.parse(JSON.stringify(selectedReview))
-      })
+      const [reviewsArr, users] = await Promise.all([getReviews(), getUsers()])
+      const { _id, is_admin } = this.state.loggedInUser
+      // List of performance reviews requiring feedback
+      const reviews = is_admin
+        ? reviewsArr
+        : reviewsArr.filter(({ reviewer_id }: Review) => reviewer_id === _id)
+      const [firstReview] = reviews
+      const selectedReview = reviews.length
+        ? JSON.parse(JSON.stringify(firstReview))
+        : null
+      this.setState({ reviews, selectedReview, users })
     } catch (e) {
       sweetalert("Oops😱", "Faild to load", "error")
       return
@@ -181,6 +185,7 @@ class Reviews extends Component<{}, State> {
           items={this.state.reviews}
           handleClickAdd={this.handleClickAdd}
           handleClickMenu={this.handleClickMenu}
+          loggedInUser={this.state.loggedInUser}
         />
         {this.state.selectedReview && (
           <ReviewsDetail

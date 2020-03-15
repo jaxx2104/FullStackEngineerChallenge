@@ -171,6 +171,7 @@ class Users extends Component<{}, State> {
           items={this.state.users}
           handleClickAdd={this.handleClickAdd}
           handleClickMenu={this.handleClickMenu}
+          loggedInUser={this.state.loggedInUser}
         />
         {this.state.selectedUser && (
           <UsersDetail
@@ -179,6 +180,7 @@ class Users extends Component<{}, State> {
             handleInputValue={this.handleInputValue}
             handleUpdateUser={this.handleUpdateUser}
             isUpdate={this.state.isUpdate}
+            loggedInUser={this.state.loggedInUser}
             selectedUser={this.state.selectedUser}
           />
         )}

@@ -35,6 +35,7 @@ interface Props {
   handleUpdateUser: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void
+  loggedInUser: User
   selectedUser: User
 }
 
@@ -45,6 +46,7 @@ const UsersDetail = (props: Props) => {
     handleCreateUser,
     handleDeleteUser,
     handleUpdateUser,
+    loggedInUser,
     selectedUser
   } = props
   return (
@@ -72,11 +74,15 @@ const UsersDetail = (props: Props) => {
         <div>
           {isUpdate ? (
             <React.Fragment>
-              <Button onClick={handleDeleteUser}>Delete</Button>
+              {loggedInUser.is_admin && (
+                <Button onClick={handleDeleteUser}>Delete</Button>
+              )}
               <Button onClick={handleUpdateUser}>Update</Button>
             </React.Fragment>
           ) : (
-            <Button onClick={handleCreateUser}>Create</Button>
+            loggedInUser.is_admin && (
+              <Button onClick={handleCreateUser}>Create</Button>
+            )
           )}
         </div>
       </ContentWrap>
