@@ -2,6 +2,100 @@
 
 This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
 
+## Installation
+
+Requirement
+
+- Node.js (12.16.1 LTS) : https://nodejs.org
+- Docker : https://www.docker.com/get-started
+- Yarn : `npm i -g yarn`
+
+
+Clone repository
+
+```
+$ git clone https://github.com/jaxx2104/FullStackEngineerChallenge
+$ cd FullStackEngineerChallenge
+```
+
+Start database
+
+```
+$ docker-compose up
+```
+
+Start backend
+
+```
+$ cd client
+$ yarn && yarn dev
+```
+
+Start frontend
+
+```
+$ cd server
+$ yarn && yarn dev
+```
+
+Running 🎉
+
+http://localhost:3000/
+
+## Test
+
+Static (lint & formatter)
+
+```
+$ yarn
+$ yarn format
+$ yarn lint
+```
+
+Unit and Integration
+
+```
+$ cd client
+$ yarn test
+$ yarn covarege
+```
+
+End to End
+
+```
+$ cd client
+$ yarn e2e
+```
+
+## Technologies
+
+Server
+
+- Node.js
+- Express
+- MongoDB
+- TypeScript
+- Docker
+
+Client 
+
+- Next.js (React.js)
+- TypeScript
+
+Test
+
+- ESlint
+- Prettier
+- Jest
+- Cypress
+
+Not started yet
+
+- Redux
+- CircleCI
+- Swagger
+- Renovate
+
 ## Requirements
 
 Design a web application that allows employees to submit feedback toward each other's performance review.
